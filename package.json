@@ -1,0 +1,27 @@
+{
+  "name": "weekly-automated-reading-job",
+  "version": "1.0.0",
+  "description": "weekly automated reading job",
+  "main": "app.js",
+  "scripts": {
+    "deploy": "firebase deploy --only hosting",
+    "build": "npm ci && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sadullah-TANRIKULU/weekly-automated-reading-job.git"
+  },
+  "keywords": [
+    "weekly",
+    "automated",
+    "reading",
+    "job"
+  ],
+  "author": "Sadullah TANRIKULU",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sadullah-TANRIKULU/weekly-automated-reading-job/issues"
+  },
+  "homepage": "https://github.com/Sadullah-TANRIKULU/weekly-automated-reading-job#readme"
+}
