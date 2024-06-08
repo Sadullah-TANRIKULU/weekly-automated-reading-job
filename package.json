@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/Sadullah-TANRIKULU/weekly-automated-reading-job/issues"
   },
-  "homepage": "https://github.com/Sadullah-TANRIKULU/weekly-automated-reading-job#readme"
+  "homepage": "https://github.com/Sadullah-TANRIKULU/weekly-automated-reading-job#readme",
+  "dependencies": {
+    "firebase": "^10.12.2"
+  }
 }

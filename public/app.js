@@ -1,56 +1,59 @@
-// Define data (replace with actual names)
-const friends = ["Alice", "Bob", "Charlie", "Diana", "Emily", "Frank", "Grace", "Henry", "Isabel", "Jack", "Kevin"];
-const paragraphs = 11;
+ // Import the functions you need from the SDKs you need
+ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+ import { getDatabase, ref, set, onValue } from "firebase/database";
+ // TODO: Add SDKs for Firebase products that you want to use
+ // https://firebase.google.com/docs/web/setup#available-libraries
 
-const localStorageKey = "lastMondayAssignments"; // Key for assignments
-const localStorageFriendsKey = "lastMondayFriends"; // Key for friends array
+ // Your web app's Firebase configuration
+ const firebaseConfig = {
+   apiKey: "AIzaSyB_i68sH2I7ck1pFQenUfC-rJhRVwbT9A4",
+   authDomain: "weekly-automated-reading-job.firebaseapp.com",
+   projectId: "weekly-automated-reading-job",
+   storageBucket: "weekly-automated-reading-job.appspot.com",
+   messagingSenderId: "299846473445",
+   appId: "1:299846473445:web:1eb68ccc4804e5096b260c",
+   databaseURL: "https://weekly-automated-reading-job-default-rtdb.europe-west1.firebasedatabase.app/",
+ };
 
-// Function to rotate the friends array (optional)
-function rotateFriends(friends) {
-  const firstFriend = friends.shift(); // Remove the first element and store it
-  friends.push(firstFriend); // Add the removed element to the end
-  return friends;
-}
+ // Initialize Firebase
+ const app = initializeApp(firebaseConfig);
+ const database = getDatabase(app);
 
-// Function to get the assigned reader and paragraph
-function getAssignment() {
-  const date = new Date();
-  const day = date.getDay(); // 0-6 (Sunday-Saturday)
+console.log(app);
+console.log(database);
 
-  // Check if it's Monday and assignments are not stored yet
-  if (day === 1 && !localStorage.getItem(localStorageKey)) {
-    // Calculate the week number (0 for first Monday)
-    const weekNumber = Math.floor((day - 1) / 7);
-
-    // Rotate friends array (optional)
-    const rotatedFriends = rotateFriends(friends.slice()); // Optional rotation
-
-    // Calculate the assigned paragraph and friend index
-    const assignments = [];
-    for (let i = 0; i < rotatedFriends.length; i++) {
-      const friendIndex = (weekNumber + i) % rotatedFriends.length;
-      const paragraphIndex = (weekNumber + friendIndex) % paragraphs;
-      const paragraph = paragraphIndex + 1; // Adjust for 1-based indexing
-
-      assignments.push(`**${rotatedFriends[friendIndex]}**: Paragraph ${paragraph}`);
-    }
-
-    // Store assignments and friends array in local storage
-    localStorage.setItem(localStorageKey, JSON.stringify(assignments));
-    localStorage.setItem(localStorageFriendsKey, JSON.stringify(rotatedFriends));
-    return assignments.join("\n");
-  } else {
-    // Retrieve assignments and friends array from local storage (if available)
-    const storedAssignments = localStorage.getItem(localStorageKey);
-    const assignments = storedAssignments ? JSON.parse(storedAssignments) : null;
-    const storedFriends = localStorage.getItem(localStorageFriendsKey);
-    const friends = storedFriends ? JSON.parse(storedFriends) : null;
-
-    // Return stored assignments or a message
-    return assignments?.join("\n") || "No assignments available yet. Check back next Monday.";
+function writeFriendsList(friends) {
+    const today = Date.now(); // Get current timestamp
+    const updates = {
+      friends,
+      lastUpdated: today,
+    };
+  
+    set(ref(database, "readingAssignments"), updates)
+      .then(() => {
+        console.log("Friends list written successfully!");
+      })
+      .catch((error) => {
+        console.error("Error writing friends list:", error);
+      });
   }
-}
+  
 
-// Display the assignment
-const assignmentText = getAssignment();
-console.log(assignmentText); // This will print the assignment to the console
+  function readFriendsList() {
+    const friendsRef = ref(database, "readingAssignments");
+    onValue(friendsRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        const friends = data.friends;
+        console.log("Retrieved friends list:", friends);
+        // You can use the retrieved friends list here
+        // (e.g., rotate the list, calculate assignments)
+      } else {
+        console.log("No friends list found in database.");
+      }
+    });
+  }
+
+  
+
+
