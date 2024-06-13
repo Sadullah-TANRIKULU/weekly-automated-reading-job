@@ -27,30 +27,32 @@ const day = date.getDay(); // 0-6 (Sunday-Saturday)
 
 console.log("day is : ", day);
 
+let dayDisplay = document.getElementById("day");
+
 switch (day) {
   case 1:
-    document.getElementById("day").innerText = "Montag";
+    dayDisplay.innerHTML = "Montag";
     break;
   case 2:
-    document.getElementById("day").innerText = "Dienstag";
+    dayDisplay.innerHTML = "Dienstag";
     break;
   case 3:
-    document.getElementById("day").innerText = "Mittwoch";
+    dayDisplay.innerHTML = "Mittwoch";
     break;
   case 4:
-    document.getElementById("day").innerText = "Donnerstag";
+    dayDisplay.innerHTML = "Donnerstag";
     break;
   case 5:
-    document.getElementById("day").innerText = "Freitag";
+    dayDisplay.innerHTML = "Freitag";
     break;
   case 6:
-    document.getElementById("day").innerText = "Samstag";
+    dayDisplay.innerHTML = "Samstag";
     break;
   case 7:
-    document.getElementById("day").innerText = "Sonntag";
+    dayDisplay.innerHTML = "Sonntag";
     break;
   default:
-    document.getElementById("day").innerText =
+    dayDisplay.innerHTML =
       "Etwas ist schief gelaufen, rufen Sie bitte Sadullah an!!!";
     break;
 }
