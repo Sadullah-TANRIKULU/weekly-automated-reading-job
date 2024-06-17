@@ -24,8 +24,10 @@ const database = getDatabase(app);
 
 const date = new Date();
 const day = date.getDay(); // 0-6 (Sunday-Saturday)
+const hour = date.getHours();
+const minute = date.getMinutes();
 
-console.log("day is : ", day);
+console.log("day is : ", day, hour, " : ", minute);
 
 let dayDisplay = document.getElementById("day");
 
@@ -121,7 +123,7 @@ readFriendsList().then((x) => {
   y = x.friends;
   console.log(y);
 
-  if (day == 1) {
+  if (day == 1 && hour == 1 && minute == 12) {
     rotateFriends(y);
     toHTML(y);
     writeFriendsList(y);
