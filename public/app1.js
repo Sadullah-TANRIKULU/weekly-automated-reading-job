@@ -123,7 +123,7 @@ readFriendsList().then((x) => {
   y = x.friends;
   console.log(y);
 
-  if (day == 1 && hour == 1 && minute == 11) {
+  if (day == 1 && hour == 20 && minute == 10) {
     rotateFriends(y);
     toHTML(y);
     writeFriendsList(y);
