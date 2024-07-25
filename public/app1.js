@@ -74,8 +74,8 @@ const writeFriendsList = (friends) => {
 };
 
 const rotateFriends = (friends) => {
-  const firstFriend = friends.shift();
-  friends.push(firstFriend);
+  const lastFriend = friends.pop();
+  friends.unshift(lastFriend);
 
   return friends;
 };
@@ -123,7 +123,7 @@ readFriendsList().then((x) => {
   y = x.friends;
   console.log(y);
 
-  if (day == 1 && hour == 20 && minute == 10) {
+  if (day == 4) {
     rotateFriends(y);
     toHTML(y);
     writeFriendsList(y);
