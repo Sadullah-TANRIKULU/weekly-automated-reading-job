@@ -7,6 +7,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const readerTable = document.getElementById("readerTable");
+const myBtn = document.getElementById("myBtn");
 
 const firebaseConfig = {
   apiKey: "AIzaSyB_i68sH2I7ck1pFQenUfC-rJhRVwbT9A4",
@@ -118,16 +119,37 @@ const readFriendsList = () => {
   });
 };
 
-let y = [];
-readFriendsList().then((x) => {
-  y = x.friends;
-  console.log(y);
+const handleClick = () => {
+  let y = [];
 
-  if (day == 4) {
+  const loadingGif = document.getElementById('loading-gif');
+  loadingGif.style.display = 'block';
+
+  readFriendsList()
+  .then((x) => {
+    y = x.friends;
+    console.log(y);
     rotateFriends(y);
-    toHTML(y);
+  })
+  .then(() => toHTML(y))
+  .then(() => { 
+    loadingGif.style.display = 'none';
     writeFriendsList(y);
-  } else {
-    toHTML(y);
-  }
-});
+  })
+};
+
+
+if (day == 4) {
+  myBtn.style.display = 'block';
+  myBtn.addEventListener("click", handleClick);
+} else {
+  let y = [];
+  readFriendsList()
+    .then((x) => {
+      y = x.friends;
+      console.log(y);
+      rotateFriends(y);
+    })
+    .then(() => toHTML(y))
+  myBtn.style.display = 'none';
+}

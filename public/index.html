@@ -53,7 +53,7 @@
         font-style: normal;
 
         width: 100%;
-        display: flex;
+        display: block;
         align-items: center;
         justify-content: center;
       }
@@ -67,11 +67,31 @@
         align-items: center;
         justify-content: center;
       }
+      #btnDiv {
+        display: flex;
+        justify-content: center;
+      }
+      #myBtn {
+        border-radius: 8px;
+        border: 2px inset rgb(106, 49, 9);
+        text-align: center;
+        width: 12rem;
+        height: 4rem;
+        color: chocolate;
+        font-size: 0.7rem;
+        font-family: 'Trebuchet MS', monospace;
+      }
+      #gif-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     </style>
   </head>
   <body>
     <h1>wöchentliche automatische Leseaufgabe</h1>
-    <div></div>
+    <div>
+    </div>
     <h5 id="day">Tag wird hier erscheinen.</h5>
     <div></div>
     <div id="table">
@@ -84,9 +104,12 @@
         </thead>
         <tbody id="readerTable"></tbody>
       </table>
+      <div id="gif-div" ><img src="../assets/Bars@1x-1.0s-200px-200px.gif" alt="loading gif" id="loading-gif" ></div>
     </div>
     <br /><br />
-    <button type="button" onclick="readFriendsList()" >Mach neu</button>
+    <div id="btnDiv" >
+      <button type="button" id="myBtn">Montags durfte nur Kamil abi auf dieser Button klicken.</button>
+    </div>
     <script src="app1.js" type="module"></script>
   </body>
 </html>
