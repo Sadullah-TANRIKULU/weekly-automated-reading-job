@@ -122,31 +122,31 @@ const readFriendsList = () => {
 const handleClick = () => {
   let y = [];
 
-  const loadingGif = document.getElementById('loading-gif');
-  loadingGif.style.display = 'block';
+  const loadingGif = document.getElementById("loading-gif");
+  loadingGif.style.display = "block";
 
   readFriendsList()
-  .then((x) => {
-    y = x.friends;
-    console.log(y);
-    rotateFriends(y);
-  })
-  .then(() => toHTML(y))
-  .then(() => { 
-    loadingGif.style.display = 'none';
-    writeFriendsList(y);
-  })
+    .then((x) => {
+      y = x.friends;
+      console.log(y);
+      rotateFriends(y);
+    })
+    .then(() => toHTML(y))
+    .then(() => {
+      loadingGif.style.display = "none";
+      writeFriendsList(y);
+      myBtn.style.display = "none";
+    });
 };
 
-
 if (day == 1) {
-  myBtn.style.display = 'block';
+  myBtn.style.display = "block";
   myBtn.addEventListener("click", handleClick);
 } else {
   let y = [];
 
-  const loadingGif = document.getElementById('loading-gif');
-  loadingGif.style.display = 'block';
+  const loadingGif = document.getElementById("loading-gif");
+  loadingGif.style.display = "block";
 
   readFriendsList()
     .then((x) => {
@@ -155,8 +155,8 @@ if (day == 1) {
       rotateFriends(y);
     })
     .then(() => {
-      loadingGif.style.display = 'none';
-      toHTML(y)
-    })
-  myBtn.style.display = 'none';
+      loadingGif.style.display = "none";
+      toHTML(y);
+    });
+  myBtn.style.display = "none";
 }
