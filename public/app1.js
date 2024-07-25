@@ -139,17 +139,24 @@ const handleClick = () => {
 };
 
 
-if (day == 4) {
+if (day == 1) {
   myBtn.style.display = 'block';
   myBtn.addEventListener("click", handleClick);
 } else {
   let y = [];
+
+  const loadingGif = document.getElementById('loading-gif');
+  loadingGif.style.display = 'block';
+
   readFriendsList()
     .then((x) => {
       y = x.friends;
       console.log(y);
       rotateFriends(y);
     })
-    .then(() => toHTML(y))
+    .then(() => {
+      loadingGif.style.display = 'none';
+      toHTML(y)
+    })
   myBtn.style.display = 'none';
 }
