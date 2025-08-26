@@ -1,6 +1,10 @@
 {
   "name": "weekly-automated-reading-job",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=22.0.0 <23.0.0",
+    "npm": ">=9.0.0"
+  },
   "description": "weekly automated reading job",
   "main": "app.js",
   "scripts": {
